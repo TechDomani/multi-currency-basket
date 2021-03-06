@@ -2,3 +2,9 @@
     display: flex;
     flex-direction: row;
 }
+
+.basket-item-control {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

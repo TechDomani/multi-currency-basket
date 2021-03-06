@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './BasketItem.css'
 
 function BasketItem({ basketItem, getPriceDisplay, updateTotal}){
@@ -9,7 +10,12 @@ function BasketItem({ basketItem, getPriceDisplay, updateTotal}){
     return (
        <div className="basket-item-container">
            <div className="margin-sm">{basketItem.itemName}</div>
-           <div className="margin-sm">{itemNumber}</div>
+           <div className="basket-item-control">
+               <button><FontAwesomeIcon icon="minus" /></button>
+               <div className="margin-sm">{itemNumber}</div>
+               <button><FontAwesomeIcon icon="plus" /></button>
+           </div>
+           
            <div className="margin-sm">{getPriceDisplay(basketItem.usdPrice)}</div>
        </div>
     )
