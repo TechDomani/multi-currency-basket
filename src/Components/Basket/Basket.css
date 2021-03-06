@@ -1,0 +1,4 @@
+.basket-total-container {
+    display: flex;
+    flex-direction: row;
+}
