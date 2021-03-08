@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import BasketItem from "../BasketItem/BasketItem";
 import Currency from "../Currency/Currency";
-import "bootstrap/dist/css/bootstrap.css";
-import './Basket.css'
-import { Row } from "react-bootstrap";
-import { Container } from "react-bootstrap";
+import soup from './soup.png'
+import milk from './milk.png'
+import bread from './bread.png'
+import apple from './apple.png'
 
 function Basket() {
 
@@ -22,17 +22,17 @@ function Basket() {
     ];
 
     const basketItems = [
-        { usdPrice: 1.00, itemName: "Apples", priceType: "per bag" },
-        { usdPrice: 0.80, itemName: "Bread", priceType: "per loaf" },
-        { usdPrice: 1.15, itemName: "Milk", priceType: "per bottle" },
-        { usdPrice: 0.65, itemName: "Soup", priceType: "per tin" }
+        { usdPrice: 1.00, itemName: "Apples", priceType: "per bag", imageName: apple },
+        { usdPrice: 0.80, itemName: "Bread", priceType: "per loaf", imageName: bread  },
+        { usdPrice: 1.15, itemName: "Milk", priceType: "per bottle", imageName: milk  },
+        { usdPrice: 0.65, itemName: "Soup", priceType: "per tin", imageName: soup  }
     ];
 
     // Functions
     const getPriceDisplay = (price) => {
         let currency = currencies.find((c) => c.currency === currentCurrency);
         let convertedPrice = Math.round(price * currency.exchange * 100) / 100;
-        return `${currency.symbol}${convertedPrice}`;
+        return `${currency.symbol}${convertedPrice.toFixed(2)}`;
     }
 
     const updateTotal = (increment) => {
@@ -41,13 +41,16 @@ function Basket() {
     }
 
     return (
-        <Container>
-            <Row className="justify-content-end">
+        <div className="container padding-md">
+             <div className="row border-grey-btm">
+                <div className="col-12 col-md-6">
+                    <h1>Basket</h1>
+                </div>
                 <Currency currencies={currencies.map(c => c.currency)}
                     currentCurrency={currentCurrency}
                     setCurrentCurrency={setCurrentCurrency}>
                 </Currency>
-            </Row>
+            </div>
             {
                 basketItems.map((b) => <BasketItem
                     key={b.itemName}
@@ -56,13 +59,13 @@ function Basket() {
                     updateTotal={updateTotal}>
                 </BasketItem>)
             }
-            <Row className="justify-content-end">
-                <div className="basket-total-container">
-                    <div className="margin-sm">Total:</div>
-                    <div className="margin-sm">{getPriceDisplay(basketTotal)}</div>
+            <div className="row margin-top-sm margin-btm-sm">
+                <div className="col d-flex justify-content-end align-items-center">
+                    <div>Total:</div>
+                    <div className="margin-left-sm">{getPriceDisplay(basketTotal)}</div>
                 </div>
-            </Row>
-        </Container>
+            </div>
+        </div>
     );
 }
 

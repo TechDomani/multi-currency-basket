@@ -1,10 +1,5 @@
-.basket-item-container {
-    display: flex;
-    flex-direction: row;
-}
-
-.basket-item-control {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.basket-item-image {
+    height: 90px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

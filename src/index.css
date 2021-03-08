@@ -15,3 +15,23 @@ code {
 .margin-sm {
   margin: 10px;
 }
+
+.margin-left-sm {
+  margin-left: 10px;
+}
+
+.margin-top-sm {
+  margin-top: 10px;
+}
+
+.margin-btm-sm {
+  margin-bottom: 10px;
+}
+
+.border-grey-btm {
+  border-bottom: 1px solid #DDD;;
+}
+
+.padding-md {
+  padding: 10px 25px
+}
