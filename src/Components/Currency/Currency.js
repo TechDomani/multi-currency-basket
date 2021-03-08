@@ -4,7 +4,6 @@ function Currency({ currencies, currentCurrency,
    setCurrentCurrency}){
 
    const updateCurrency = (event) => {
-      console.log(event);
       setCurrentCurrency(event.target.value);
    }
     
