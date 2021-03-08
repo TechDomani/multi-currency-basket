@@ -4,12 +4,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { faMinus } from "@fortawesome/free-solid-svg-icons";
+import registerIcons from './Helper/registerIcons';
 
-library.add(faPlus);
-library.add(faMinus);
+registerIcons();
 
 ReactDOM.render(
   <React.StrictMode>

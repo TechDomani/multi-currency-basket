@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import formatPrice from "../../Helper/formatPrice";
 import BasketItem from "../BasketItem/BasketItem";
 import Currency from "../Currency/Currency";
 import soup from './soup.png'
@@ -8,37 +9,41 @@ import apple from './apple.png'
 
 function Basket() {
 
+     // Static Data
+     const usdCurrency =  { currency: "USD", exchange: 1, symbol: "$" };
+     const currencies = [
+         { currency: "CAD", exchange: 1.26349, symbol: "$" },
+         { currency: "CHF", exchange: 0.915, symbol: "Fr " },
+         { currency: "EUR", exchange: 0.85, symbol: "€" },
+         { currency: "GBP", exchange: 0.716, symbol: "£" },
+         usdCurrency
+     ];
+ 
+     const basketItems = [
+         { usdPrice: 1.00, itemName: "Apples", priceType: "per bag", imageName: apple },
+         { usdPrice: 0.80, itemName: "Bread", priceType: "per loaf", imageName: bread  },
+         { usdPrice: 1.15, itemName: "Milk", priceType: "per bottle", imageName: milk  },
+         { usdPrice: 0.65, itemName: "Soup", priceType: "per tin", imageName: soup  }
+     ]; 
+
     // State
-    const [currentCurrency, setCurrentCurrency] = useState("USD");
-    const [basketTotal, setBasketTotal] = useState(0);
+    const [currentCurrency, setCurrentCurrency] = useState(usdCurrency);
+    const [basketTotal, setBasketTotal] = useState(0);   
+    const [displayTotal, setDisplayTotal] = useState("$0.00");
 
-    // Static Data
-    const currencies = [
-        { currency: "CAD", exchange: 1.26349, symbol: "$" },
-        { currency: "CHF", exchange: 0.915, symbol: "Fr " },
-        { currency: "EUR", exchange: 0.85, symbol: "€" },
-        { currency: "GBP", exchange: 0.716, symbol: "£" },
-        { currency: "USD", exchange: 1, symbol: "$" }
-    ];
 
-    const basketItems = [
-        { usdPrice: 1.00, itemName: "Apples", priceType: "per bag", imageName: apple },
-        { usdPrice: 0.80, itemName: "Bread", priceType: "per loaf", imageName: bread  },
-        { usdPrice: 1.15, itemName: "Milk", priceType: "per bottle", imageName: milk  },
-        { usdPrice: 0.65, itemName: "Soup", priceType: "per tin", imageName: soup  }
-    ];
-
-    // Functions
-    const getPriceDisplay = (price) => {
-        let currency = currencies.find((c) => c.currency === currentCurrency);
-        let convertedPrice = Math.round(price * currency.exchange * 100) / 100;
-        return `${currency.symbol}${convertedPrice.toFixed(2)}`;
+    // Update Functions  
+    const updateCurrency = (currency) => {
+        setCurrentCurrency(currency);
+        setDisplayTotal(formatPrice(basketTotal, currency));
     }
 
     const updateTotal = (increment) => {
         let total = basketTotal + increment;
         setBasketTotal(total);
-    }
+        setDisplayTotal(formatPrice(total, currentCurrency));
+    }  
+
 
     return (
         <div className="container padding-md">
@@ -46,23 +51,23 @@ function Basket() {
                 <div className="col-12 col-md-6">
                     <h1>Basket</h1>
                 </div>
-                <Currency currencies={currencies.map(c => c.currency)}
+                <Currency currencies={currencies}
                     currentCurrency={currentCurrency}
-                    setCurrentCurrency={setCurrentCurrency}>
+                    updateCurrency={updateCurrency}>
                 </Currency>
             </div>
             {
                 basketItems.map((b) => <BasketItem
                     key={b.itemName}
                     basketItem={b}
-                    getPriceDisplay={getPriceDisplay}
+                    currency={currentCurrency}
                     updateTotal={updateTotal}>
                 </BasketItem>)
             }
             <div className="row margin-top-sm margin-btm-sm">
                 <div className="col d-flex justify-content-end align-items-center">
                     <div>Total:</div>
-                    <div className="margin-left-sm">{getPriceDisplay(basketTotal)}</div>
+                    <div className="margin-left-sm">{displayTotal}</div>
                 </div>
             </div>
         </div>
