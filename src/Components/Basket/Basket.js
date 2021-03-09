@@ -83,7 +83,7 @@ function Basket() {
             <div className="row my-2">
                 <div className="col d-flex justify-content-end align-items-center">
                     <div>Total:</div>
-                    <div className="ml-2">{displayTotal}</div>
+                    <div className="ml-2" aria-label="DisplayTotal">{displayTotal}</div>
                 </div>
             </div>
         </div>)

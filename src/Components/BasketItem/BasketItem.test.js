@@ -35,12 +35,12 @@ describe('BasketItem component', () => {
  
     test(`The remove button should be shown`, () => {
         render(<BasketItem { ...requiredProps }/>)
-        expect(screen.getByLabelText("Remove")).toBeInTheDocument();
+        expect(screen.getByLabelText("RemoveApples")).toBeInTheDocument();
     })
 
     test(`The add button should be shown`, () => {
         render(<BasketItem { ...requiredProps }/>)
-        expect(screen.getByLabelText("Add")).toBeInTheDocument();
+        expect(screen.getByLabelText("AddApples")).toBeInTheDocument();
     })
 
     test(`The item count should initially be zero`, () => {
@@ -50,39 +50,39 @@ describe('BasketItem component', () => {
 
     test(`When the add button is clicked the count should increase, the subtotal should change and updateTotal should be called`, () => {
         render(<BasketItem { ...requiredProps }/>)
-        const addButton = screen.getByLabelText("Add");
+        const addButton = screen.getByLabelText("AddApples");
         // Add one item
         userEvent.click(addButton);
         expect(screen.getByLabelText("Count")).toHaveTextContent("1");
         expect(mockUpdateTotalFunction).toHaveBeenLastCalledWith(1.50);
-        expect(screen.getByLabelText("DisplayTotal")).toHaveTextContent("£1.07");
+        expect(screen.getByLabelText("DisplaySubTotal")).toHaveTextContent("£1.07");
         // Add another item
         userEvent.click(addButton);
         expect(screen.getByLabelText("Count")).toHaveTextContent("2");
         expect(mockUpdateTotalFunction).toHaveBeenLastCalledWith(1.50);
-        expect(screen.getByLabelText("DisplayTotal")).toHaveTextContent("£2.15");
+        expect(screen.getByLabelText("DisplaySubTotal")).toHaveTextContent("£2.15");
     })
 
     test(`When the remove button is clicked the count should decrease, the subtotal should change and updateTotal should be called`, () => {
         render(<BasketItem { ...requiredProps }/>)
         // Add two items
-        const addButton = screen.getByLabelText("Add");
+        const addButton = screen.getByLabelText("AddApples");
         userEvent.click(addButton);
         userEvent.click(addButton);
         expect(screen.getByLabelText("Count")).toHaveTextContent("2");
         // Remove item
-        const removeButton = screen.getByLabelText("Remove");
+        const removeButton = screen.getByLabelText("RemoveApples");
         userEvent.click(removeButton);
         expect(screen.getByLabelText("Count")).toHaveTextContent("1");
         expect(mockUpdateTotalFunction).toHaveBeenLastCalledWith(-1.50);
-        expect(screen.getByLabelText("DisplayTotal")).toHaveTextContent("£1.07");
+        expect(screen.getByLabelText("DisplaySubTotal")).toHaveTextContent("£1.07");
     })
 
     test(`When the item count is zero it should not decrease when the remove button is clicked`, () => {
         render(<BasketItem { ...requiredProps }/>)
-        const removeButton = screen.getByLabelText("Remove");
+        const removeButton = screen.getByLabelText("RemoveApples");
         userEvent.click(removeButton);
         expect(screen.getByLabelText("Count")).toHaveTextContent("0");
-        expect(screen.getByLabelText("DisplayTotal")).toHaveTextContent("£0.00");
+        expect(screen.getByLabelText("DisplaySubTotal")).toHaveTextContent("£0.00");
     })
 })

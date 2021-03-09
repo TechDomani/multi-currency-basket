@@ -60,11 +60,11 @@ function BasketItem({ basketItem, currency, updateTotal }) {
                 <div className="small">{displayPrice} {basketItem.priceType}</div>
             </div>
             <div className="col-6 col-md-3 d-flex justify-content-center align-items-center">
-                <button onClick={reduceNumber} aria-label="Remove"><FontAwesomeIcon icon="minus" /></button>
+                <button onClick={reduceNumber} aria-label={"Remove" + basketItem.itemName}><FontAwesomeIcon icon="minus" /></button>
                 <div aria-label="Count" className="m-2">{itemNumber}</div>
-                <button onClick={increaseNumber} aria-label="Add"><FontAwesomeIcon icon="plus" /></button>
+                <button onClick={increaseNumber} aria-label={"Add" + basketItem.itemName}><FontAwesomeIcon icon="plus" /></button>
             </div>
-            <div className="col-12 col-md-3 d-flex justify-content-end align-items-center my-2" aria-label="DisplayTotal">{displayTotal}</div>
+            <div className="col-12 col-md-3 d-flex justify-content-end align-items-center my-2" aria-label="DisplaySubTotal">{displayTotal}</div>
         </div>
     )
 }
