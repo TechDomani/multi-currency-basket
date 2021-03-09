@@ -20,9 +20,9 @@ function Currency({ currencies, currentCurrency, updateCurrency }) {
       return <ErrorDetail errorMessage={error.message} componentName="the currency"></ErrorDetail>
    }
    return (
-      <div className="col-12 col-md-6 d-flex justify-content-end d-flex align-items-center margin-btm-sm">
+      <div className="col-12 col-md-6 d-flex justify-content-end d-flex align-items-center mb-2">
          <div>Currency:</div>
-         <select id="currencies" defaultValue={currentCurrency.currency} onChange={changeCurrency} className="margin-left-sm">
+         <select defaultValue={currentCurrency.currency} onChange={changeCurrency} className="ml-2">
             {
                currencies.map((c) =>
                   <option key={c.currency} value={c.currency}>{c.currency}</option>)

@@ -3,10 +3,10 @@ import formatPrice from "../../Helper/formatPrice";
 import BasketItem from "../BasketItem/BasketItem";
 import Currency from "../Currency/Currency";
 import ErrorDetail from "../Error/ErrorDetail";
-import soup from './soup.png'
-import milk from './milk.png'
-import bread from './bread.png'
-import apple from './apple.png'
+import soup from '../../Images/soup.png'
+import milk from '../../Images/milk.png'
+import bread from '../../Images/bread.png'
+import apple from '../../Images/apple.png'
 
 function Basket() {
 
@@ -80,10 +80,10 @@ function Basket() {
                     updateTotal={updateTotal}>
                 </BasketItem>)
             }
-            <div className="row margin-top-sm margin-btm-sm">
+            <div className="row my-2">
                 <div className="col d-flex justify-content-end align-items-center">
                     <div>Total:</div>
-                    <div className="margin-left-sm">{displayTotal}</div>
+                    <div className="ml-2">{displayTotal}</div>
                 </div>
             </div>
         </div>)

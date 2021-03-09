@@ -1,5 +1,5 @@
 import BasketItem from './BasketItem';
-import apple from '../Basket/apple.png';
+import apple from '../../Images/apple.png';
 import { render, screen } from '@testing-library/react';
 import registerIcons from '../../Helper/registerIcons';
 import userEvent from '@testing-library/user-event';
@@ -48,9 +48,7 @@ describe('BasketItem component', () => {
         expect(screen.getByLabelText("Count")).toHaveTextContent("0");
     })
 
-    test(`The item count should increase when the add button is clicked,
-             updateTotal should be called with the usdPrice
-             the sub total should be shown correctly`, () => {
+    test(`When the add button is clicked the count should increase, the subtotal should change and updateTotal should be called`, () => {
         render(<BasketItem { ...requiredProps }/>)
         const addButton = screen.getByLabelText("Add");
         // Add one item
@@ -65,9 +63,7 @@ describe('BasketItem component', () => {
         expect(screen.getByLabelText("DisplayTotal")).toHaveTextContent("£2.15");
     })
 
-    test(`The item count should decrease when the remove button is clicked,
-             updateTotal should be called with a negative usdPrice
-             the sub total should be shown correctly`, () => {
+    test(`When the remove button is clicked the count should decrease, the subtotal should change and updateTotal should be called`, () => {
         render(<BasketItem { ...requiredProps }/>)
         // Add two items
         const addButton = screen.getByLabelText("Add");
@@ -82,8 +78,7 @@ describe('BasketItem component', () => {
         expect(screen.getByLabelText("DisplayTotal")).toHaveTextContent("£1.07");
     })
 
-    test(`The item count should not decrease when the remove button is clicked 
-          but it is already zero`, () => {
+    test(`When the item count is zero it should not decrease when the remove button is clicked`, () => {
         render(<BasketItem { ...requiredProps }/>)
         const removeButton = screen.getByLabelText("Remove");
         userEvent.click(removeButton);
