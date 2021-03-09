@@ -18,12 +18,17 @@ The application will then be accessible at:
 
 [http://localhost:3000](http://localhost:3000)
 
-To run in production mode use
+To run in production mode install server (if not done already)
 
-npm install
-npm install -g serve (if not already installed)
-npm run build
-serve -s build
+    npm install -g serve
+
+Run the build
+
+    npm run build
+
+To start the application
+
+    serve -s build
 
 The application will then be accessible at
 
