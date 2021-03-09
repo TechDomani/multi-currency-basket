@@ -17,3 +17,14 @@ To start the application:
 The application will then be accessible at:
 
 [http://localhost:3000](http://localhost:3000)
+
+To run in production mode use
+
+npm install
+npm install -g serve (if not already installed)
+npm run build
+serve -s build
+
+The application will then be accessible at
+
+[http://localhost:5000](http://localhost:5000)

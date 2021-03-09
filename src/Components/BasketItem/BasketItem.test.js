@@ -9,7 +9,6 @@ describe('BasketItem component', () => {
     registerIcons();
 
     const mockUpdateTotalFunction = jest.fn();
-    const mockGetPriceDisplay = jest.fn();
 
     const requiredProps = {
         basketItem:  { usdPrice: 1.50, 
@@ -81,5 +80,14 @@ describe('BasketItem component', () => {
         expect(screen.getByLabelText("Count")).toHaveTextContent("1");
         expect(mockUpdateTotalFunction).toHaveBeenLastCalledWith(-1.50);
         expect(screen.getByLabelText("DisplayTotal")).toHaveTextContent("£1.07");
+    })
+
+    test(`The item count should not decrease when the remove button is clicked 
+          but it is already zero`, () => {
+        render(<BasketItem { ...requiredProps }/>)
+        const removeButton = screen.getByLabelText("Remove");
+        userEvent.click(removeButton);
+        expect(screen.getByLabelText("Count")).toHaveTextContent("0");
+        expect(screen.getByLabelText("DisplayTotal")).toHaveTextContent("£0.00");
     })
 })
