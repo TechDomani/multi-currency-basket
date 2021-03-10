@@ -33,3 +33,10 @@ To start the application
 The application will then be accessible at
 
 [http://localhost:5000](http://localhost:5000)
+
+### Running the tests
+
+To run the tests use:
+
+    npm test
+
