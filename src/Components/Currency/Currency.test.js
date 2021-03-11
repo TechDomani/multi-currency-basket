@@ -1,4 +1,5 @@
 import Currency from './Currency';
+import currencyData from "../../Data/CurrencyData.json"
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -6,12 +7,11 @@ describe('Currency component', () => {
 
     const mockUpdateCurrencyFunction = jest.fn();
 
-    const usd = { currency: "USD", exchange: 1, symbol: "$" };
-    const eur = { currency: "EUR", exchange: 0.85, symbol: "€" };
-
+    const usd = currencyData.find(d => d.currency === "USD");
+    const eur =  currencyData.find(d => d.currency === "EUR");
 
     const requiredProps = {
-        currencies: [usd, eur],
+        currencies: currencyData,
         currentCurrency: usd,
         updateCurrency: mockUpdateCurrencyFunction}
 
@@ -22,12 +22,15 @@ describe('Currency component', () => {
         expect(combo).toHaveValue("USD");
     });
 
-    test(`Given the currencies usd and eur as props there should be two options USD and EUR`, () => {  
+    test(`Given the currencies as props there should be associated options`, () => {  
         render(<Currency { ...requiredProps }/>)
         let options = screen.getAllByRole("option");
-        expect(options.length).toBe(2);
-        expect(options[0]).toHaveValue("USD");
-        expect(options[1]).toHaveValue("EUR");;
+        expect(options.length).toBe(5);
+        expect(options[0]).toHaveValue("CAD");
+        expect(options[1]).toHaveValue("CHF");
+        expect(options[0]).toHaveValue("CAD");
+        expect(options[1]).toHaveValue("CHF");
+        expect(options[0]).toHaveValue("CAD");
     });
 
     test(`When EUR is selected then the combobox value should be EUR and updateCurrency should be called`, () => {  

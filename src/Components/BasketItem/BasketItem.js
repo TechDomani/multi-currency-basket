@@ -10,7 +10,7 @@ function BasketItem({ basketItem, currency, updateTotal }) {
     const [itemNumber, setItemNumber] = useState(0);
     const [displayPrice, setDisplayPrice] = useState(0);
     const [displayTotal, setDisplayTotal] = useState(0);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(null);  
 
     useEffect(() => {
         setDisplayPrice(formatPrice(basketItem.usdPrice, currency));
@@ -33,6 +33,8 @@ function BasketItem({ basketItem, currency, updateTotal }) {
             setError(error);
         }
     }
+
+    
 
     const increaseNumber = () => {
         try {
