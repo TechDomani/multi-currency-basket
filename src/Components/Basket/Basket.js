@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from 'axios'
+import {useEffect} from "react";
 import formatPrice from "../../Helper/formatPrice";
 import BasketItem from "../BasketItem/BasketItem";
 import Currency from "../Currency/Currency";
@@ -16,6 +18,20 @@ function Basket() {
     const [basketTotal, setBasketTotal] = useState(0);
     const [displayTotal, setDisplayTotal] = useState("$0.00");
     const [error, setError] = useState(null);
+
+    useEffect(() => {
+        axios.get(`http://api.currencylayer.com/live?access_key=ab63bc787ada96541ce94291de75e602`)
+        .then((response) => {
+             console.log(response);                         
+             const currencyQuotes = response.data.quotes;
+             currencyData.forEach((c) => {
+                 const exchangeString = "USD" + c.currency;
+                 c.exchange = currencyQuotes[exchangeString];
+             })
+             //console.log(currencyQuotes.USDEUR);
+        })
+        .catch(error => console.log(error))
+    })
 
     // Update Functions  
     const updateCurrency = (currency) => {

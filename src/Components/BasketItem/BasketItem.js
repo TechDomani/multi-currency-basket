@@ -33,8 +33,7 @@ function BasketItem({ basketItem, currency, updateTotal }) {
             setError(error);
         }
     }
-
-    
+  
 
     const increaseNumber = () => {
         try {
