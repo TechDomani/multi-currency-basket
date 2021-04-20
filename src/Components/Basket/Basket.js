@@ -28,7 +28,6 @@ function Basket() {
                  const exchangeString = "USD" + c.currency;
                  c.exchange = currencyQuotes[exchangeString];
              })
-             //console.log(currencyQuotes.USDEUR);
         })
         .catch(error => console.log(error))
     })

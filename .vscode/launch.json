@@ -18,6 +18,21 @@
             "disableOptimisticBPs": true,
             "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/react-scripts",
             "protocol": "inspector"
+        }, {
+            "type": "node",
+            "name": "vscode-jest-tests single file",
+            "request": "launch",
+            "args": [
+                "test",
+                "formatPrice.test.js",
+                "--no-cache"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/react-scripts",
+            "protocol": "inspector"
         }
     ]
 }
