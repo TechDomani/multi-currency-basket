@@ -25,7 +25,6 @@ function Basket() {
              console.log(response);                         
              const currencyQuotes = response.data.rates;
              currencyData.forEach((c) => {
-                 const exchangeString = "USD" + c.currency;
                  c.exchange = currencyQuotes[c.currency];
              })
         })
