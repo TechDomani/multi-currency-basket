@@ -39,4 +39,3 @@ The application will then be accessible at
 To run the tests use:
 
     npm test
-

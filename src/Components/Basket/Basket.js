@@ -20,13 +20,13 @@ function Basket() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://api.currencylayer.com/live?access_key=ab63bc787ada96541ce94291de75e602`)
+        axios.get(`https://openexchangerates.org/api/latest.json?app_id=18550223852943d1bc76daf4af85e022`)
         .then((response) => {
              console.log(response);                         
-             const currencyQuotes = response.data.quotes;
+             const currencyQuotes = response.data.rates;
              currencyData.forEach((c) => {
                  const exchangeString = "USD" + c.currency;
-                 c.exchange = currencyQuotes[exchangeString];
+                 c.exchange = currencyQuotes[c.currency];
              })
         })
         .catch(error => console.log(error))
