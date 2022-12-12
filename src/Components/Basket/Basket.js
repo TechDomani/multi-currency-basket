@@ -29,7 +29,7 @@ function Basket() {
              })
         })
         .catch(error => console.log(error))
-    })
+    }, [])
 
     // Update Functions  
     const updateCurrency = (currency) => {
